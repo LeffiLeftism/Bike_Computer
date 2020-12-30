@@ -7,6 +7,7 @@ void setup() {
 #else if enable_receiveDatapack_output
   Serial.begin(115200);
 #endif
+
   mySerial.begin(38400);
 
 }
@@ -14,4 +15,5 @@ void setup() {
 void loop() {
   sensor newSensor;
   NewSensorData(1, newSensor);
+  //delay(10);
 }

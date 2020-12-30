@@ -125,7 +125,7 @@ void receiveSensorData(bool& shareData, bool& request, bool& rerun) {
 #if serial_ausgabe
   if (trys % 100 == 0 && !request) {
     double perc = double(fail) / double(trys) * 100;
-    double deltaT = double(time2) / double(1000);
+    double deltaT = double(time2) / double(100);
     time2 = millis() - time1;
     time1 = millis();
     Serial.print("Tries|Fails: ");
