@@ -18,7 +18,9 @@ void setup () {
 void loop () {
 #ifdef receiveData
 	if(!tom.receiveMessage()) {
+#ifdef _USB_
 		Serial.println("TIMEOUT/RECEIVE-ERROR");
+#endif
 	} else {
 		tom.printMessage();
 	}

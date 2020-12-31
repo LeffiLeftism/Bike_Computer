@@ -136,9 +136,16 @@ typedef struct message {
 					if(mySerial.available()){
 						if(messageStartCount != 3) {
 							if(mySerial.read() == 255) {messageStartCount++; Serial.println("ADD");}
-							else {messageStartCount = 0;Serial.println("Error");}
+							else {
+								messageStartCount = 0;
+#ifdef _USB_
+								Serial.println("Error");
+#endif
+							}
 						} else {
+#ifdef _USB_
 							Serial.println("Break;");
+#endif
 							break;
 						}
 					}
@@ -148,7 +155,9 @@ typedef struct message {
 			}
 				
 			if(mySerial.available() > 0) {
-				Serial.println("get message");			  
+#ifdef _USB_
+				Serial.println("Got message");
+#endif
 				byte received[_MESSAGE_LENGTH_] = {0};
 				for(int n = 0; n < _MESSAGE_LENGTH_; n++) {
 					received[n] = mySerial.read();
