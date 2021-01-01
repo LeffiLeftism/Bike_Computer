@@ -5,7 +5,9 @@
 #define _ORIGIN_DEVICE_ADDR_ 0x01 	//Origin address for communication
 #define _DEST_DEVICE_ADDR_ 0x02   	//Destination address for communication
 #define _ARDUINO_                 	//define _ARDUINO_ or _ATTINY_ for right communication-library
-#define _USB_                     	//if defined, serial USB-communication is activated
+#ifdef _ARDUINO_
+	#define _USB_                     	//if defined, serial USB-communication is activated
+#endif
 #define _BAUDRATE_ 19200         	//Bautrate for serial communication
 #define _TIMEOUT_ 20				//max time to receive message start sequence in ms
 
@@ -21,7 +23,7 @@
 #else
 	#include <SoftSerial.h>             			//library for digispark boards to enable software serial communication
 	#include <TinyPinChange.h>            			//library needed to change interrupts on digispark board
-	SoftSerial mySerial (_RX_PIN_, _TX_PIN_);   	//bind serial communication to RX and TX pins
+	SoftSerial mySerial (1, 3);   					//bind serial communication to RX and TX pins. Pin3 is the only pin with pullup resistor, so it has to be used for TX_pin
 #endif
 
 

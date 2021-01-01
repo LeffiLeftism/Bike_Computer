@@ -1,7 +1,7 @@
 #include "serial_message.h"
 
 #define receiveData
-#define wait 30
+#define wait 30			//Set wait for transmitter to 10 and for receiver to 30 for up to 19 success messages per second
 
 message paul;
 message tom;
